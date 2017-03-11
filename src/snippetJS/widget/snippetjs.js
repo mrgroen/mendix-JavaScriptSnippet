@@ -4,6 +4,7 @@
     ========================
 
     @file      : snippetjs.js
+    @version   : 1.1.0
     @author    : Marcus Groen
     @date      : 09-03-2017
     @copyright : Incentro
