@@ -265,14 +265,14 @@ define([
             if (self.usejQuery === "jQuery1") {
                 define.amd.jQuery = true;
                 require(["snippetjs/lib/jquery-1.12.4"], function (jquery1124) {
-                    self._jQuery1 = jquery1124.noConflict(true);
+                    self._jQuery1 = jquery1124;
                     str = "var jQuery, $; jQuery = $ = self._jQuery1; " + str;
                     self._evalJS(str);
                 });
             } else if (self.usejQuery === "jQuery3") {
                 define.amd.jQuery = true;
                 require(["snippetjs/lib/jquery-3.1.1"], function (jquery311) {
-                    self._jQuery3 = jquery311.noConflict(true);
+                    self._jQuery3 = jquery311;
                     str = "var jQuery, $; jQuery = $ = self._jQuery3; " + str;
                     self._evalJS(str);
                 });
