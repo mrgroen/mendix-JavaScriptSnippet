@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="snippetjs.widget.snippetjs_datasource" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+  <name>JavaScript Snippet (Data source)</name>
+  <description>This widget can be used to insert custom JavaScript to your page, taking object attributes as input parameters.</description>
+
+  <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T5XTwUpXQRTH8Y8bE1xEBiK6a9EmddOiREHFXkFLSQvMBxAFfQNdqE+gaFQkPoKQGi7CcBOaYQ8gLlQExUBdyIG5ePmD9+ZZDTNzvvM7vzOnym30YBbPMIjl3Fks3+Az9jCO1disSpdqcYAHCfIRfysAT/EeY7hEI84ywHNspxfi9aIIZa/xElsZoBk7WMCHEkCoG0ILdjPAQ5xiDeFFUWygE48iJwNEwhX2EWqKIkx8gpq8iQ3JxO/o/g8FHYico1AQ9UzjIrXvRwmgHZ9QjYkA9GMqtXAA6yWA8OgrzjGZeVCPQ2wmg4oYcacNkXOSN/Eaf1J77m1iHY7xDa9KSogSu/A4r6AVvzCPkRLAEt4hcnYqv/IXvC0BrKAXL/Czcpjic8xh8Y5hGsYo/qEpOpE3MWqfKRjnPsQc/I7+J7/cAMfJRMJdvEJGAAAAAElFTkSuQmCC</icon>
+
+  <properties>
+        <property key="usejQuery" type="enumeration" defaultValue="no">
+            <caption>Enable jQuery</caption>
+            <category>Behavior</category>
+            <description>If you want to use jQuery in your snippet.</description>
+            <enumerationValues>
+                <enumerationValue key="no">No</enumerationValue>
+                <enumerationValue key="jQuery1">jQuery 1.12.4</enumerationValue>
+                <enumerationValue key="jQuery3">jQuery 3.1.1</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="refresh" type="boolean" defaultValue="true" required="true">
+            <caption>Enable refresh</caption>
+            <category>Behavior</category>
+            <description>Run your snippet again if the object is refreshed.</description>
+        </property>
+        <property key="snippet" type="translatableString" multiline="true" required="false">
+            <caption>JavaScript Snippet</caption>
+            <category>Behavior</category>
+            <description>Use ${your_variable_name} to have the attribute value inserted in this content. Note that this content, except for the replacements, is interpreted as JavaScript.</description>
+        </property>
+        <property key="notused" type="object" isList="true" required="false">
+            <caption>Attributes</caption>
+            <category>Data source</category>
+            <description></description>
+            <properties>
+                <property key="variablename" type="string" required="false" defaultValue="">
+                    <caption>Variable name</caption>
+                    <category>Data source</category>
+                    <description>Identifies the attribute value, this name should be used in the 'JavaScript Snippet' property.</description>
+                </property>
+                <property key="attrs" type="attribute" allowNonPersistableEntities="true" isPath="optional" pathType="reference">
+                    <caption>Attribute</caption>
+                    <category>Data source</category>
+                    <description>Value of this attribute will be used to replace ${your_variable_name}, defined in the 'JavaScript Snippet' property.</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="String" />
+                        <attributeType name="Enum"/>
+                        <attributeType name="Integer"/>
+                        <attributeType name="Float"/>
+                        <attributeType name="Currency"/>
+                        <attributeType name="Decimal"/>
+                        <attributeType name="Long"/>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+                <property key="emptyReplacement" type="translatableString" required="false">
+                    <caption>Empty value replacement</caption>
+                    <category>Data source</category>
+                    <description>This string will be used when an attribute returns empty. Note that this string is interpreted as JavaScript.</description>
+                </property>
+                <property key="datetimeformat" type="enumeration" defaultValue="datetime" >
+                    <caption>Date format</caption>
+                    <category>Behaviour</category>
+                    <description>Shows date and/or time according to locale of user. Relative is time relative to current datetime. (E.g. 3 hours from now)</description>
+                    <enumerationValues>
+                        <enumerationValue key="datetime">Date and time </enumerationValue>
+                        <enumerationValue key="date">Date</enumerationValue>
+                        <enumerationValue key="time">Time</enumerationValue>
+                        <enumerationValue key="relative">Relative</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="datePattern" type="translatableString" required="false">
+                    <caption>Date pattern</caption>
+                    <category>Behaviour</category>
+                    <description>Optional, date pattern to override date part according to dojo/date/locale.</description>
+                </property>
+                <property key="timePattern" type="translatableString" required="false">
+                    <caption>Time pattern</caption>
+                    <category>Behaviour</category>
+                    <description>Optional, time pattern to override time part according to dojo/date/locale.</description>
+                </property>
+                <property key="renderHTML" type="boolean" defaultValue="false">
+                    <caption>Render value as HTML</caption>
+                    <category>Behaviour</category>
+                    <description>Escapes string value when set to false.</description>
+                </property>
+                <property key="decimalPrecision" type="integer" defaultValue="0">
+                    <caption>Decimal precision</caption>
+                    <category>Behaviour</category>
+                    <description>The number of decimals to display.</description>
+                </property>
+                <property key="groupDigits" type="boolean" defaultValue="true">
+                    <caption>Group digits</caption>
+                    <category>Behaviour</category>
+                    <description>Displays separator character in case of a number datatype.</description>
+                </property>
+            </properties>
+        </property>
+        <property key="useTranslatableStrings" type="boolean" defaultValue="false" required="true">
+            <caption>Translatable strings</caption>
+            <category>Translations</category>
+            <description>Use translatable strings (instead of internal language pack)</description>
+        </property>
+        <property key="translateStringsecond" type="translatableString">
+            <caption>String value for second</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">second</translation>
+                <translation lang="en_GB">second</translation>
+                <translation lang="nl_NL">seconde</translation>
+            </translations>
+        </property>
+        <property key="translateStringseconds" type="translatableString">
+            <caption>String value for seconds</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">seconds</translation>
+                <translation lang="en_GB">seconds</translation>
+                <translation lang="nl_NL">seconden</translation>
+            </translations>
+        </property>
+        <property key="translateStringminute" type="translatableString">
+            <caption>String value for minute</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">minute</translation>
+                <translation lang="en_GB">minute</translation>
+                <translation lang="nl_NL">minuut</translation>
+            </translations>
+        </property>
+        <property key="translateStringminutes" type="translatableString">
+            <caption>String value for minutes</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">minutes</translation>
+                <translation lang="en_GB">minutes</translation>
+                <translation lang="nl_NL">minuten</translation>
+            </translations>
+        </property>
+        <property key="translateStringhour" type="translatableString">
+            <caption>String value for hour</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">hour</translation>
+                <translation lang="en_GB">hour</translation>
+                <translation lang="nl_NL">uur</translation>
+            </translations>
+        </property>
+        <property key="translateStringhours" type="translatableString">
+            <caption>String value for hours</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">hours</translation>
+                <translation lang="en_GB">hours</translation>
+                <translation lang="nl_NL">uur</translation>
+            </translations>
+        </property>
+        <property key="translateStringday" type="translatableString">
+            <caption>String value for day</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">day</translation>
+                <translation lang="en_GB">day</translation>
+                <translation lang="nl_NL">dag</translation>
+            </translations>
+        </property>
+        <property key="translateStringdays" type="translatableString">
+            <caption>String value for days</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">days</translation>
+                <translation lang="en_GB">days</translation>
+                <translation lang="nl_NL">dagen</translation>
+            </translations>
+        </property>
+        <property key="translateStringweek" type="translatableString">
+            <caption>String value for week</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">week</translation>
+                <translation lang="en_GB">week</translation>
+                <translation lang="nl_NL">week</translation>
+            </translations>
+        </property>
+        <property key="translateStringweeks" type="translatableString">
+            <caption>String value for weeks</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">weeks</translation>
+                <translation lang="en_GB">weeks</translation>
+                <translation lang="nl_NL">weken</translation>
+            </translations>
+        </property>
+        <property key="translateStringmonth" type="translatableString">
+            <caption>String value for month</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">month</translation>
+                <translation lang="en_GB">month</translation>
+                <translation lang="nl_NL">maand</translation>
+            </translations>
+        </property>
+        <property key="translateStringmonths" type="translatableString">
+            <caption>String value for months</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">months</translation>
+                <translation lang="en_GB">months</translation>
+                <translation lang="nl_NL">maanden</translation>
+            </translations>
+        </property>
+        <property key="translateStringyear" type="translatableString">
+            <caption>String value for year</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">year</translation>
+                <translation lang="en_GB">year</translation>
+                <translation lang="nl_NL">jaar</translation>
+            </translations>
+        </property>
+        <property key="translateStringyears" type="translatableString">
+            <caption>String value for years</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">years</translation>
+                <translation lang="en_GB">years</translation>
+                <translation lang="nl_NL">jaar</translation>
+            </translations>
+        </property>
+        <property key="translateStringtimestampFuture" type="translatableString">
+            <caption>String value for from now</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">from now</translation>
+                <translation lang="en_GB">from now</translation>
+                <translation lang="nl_NL">vanaf nu</translation>
+            </translations>
+        </property>
+        <property key="translateStringtimestampPast" type="translatableString">
+            <caption>String value for ago</caption>
+            <category>Translations</category>
+            <description></description>
+            <translations>
+                <translation lang="en_US">ago</translation>
+                <translation lang="en_GB">ago</translation>
+                <translation lang="nl_NL">geleden</translation>
+            </translations>
+        </property>
+    </properties>
+</widget>
