@@ -24,7 +24,7 @@
         <property key="snippet" type="translatableString" multiline="true" required="false">
             <caption>JavaScript Snippet</caption>
             <category>Behavior</category>
-            <description>Use ${your_variable_name} to have the attribute value inserted in this content. Note that this content, except for the replacements, is interpreted as JavaScript.</description>
+            <description></description>
         </property>
     </properties>
 </widget>
