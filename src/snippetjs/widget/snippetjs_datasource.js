@@ -235,12 +235,6 @@ define([
             }
         },
 
-        _escapeHTML: function (str) {
-            var el = document.createElement("p");
-            el.appendChild(document.createTextNode(str));
-            return el.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-        },
-
         _runJS: function (callback) {
             var self = this;
             logger.debug(self.id + "._runJS");
@@ -249,7 +243,7 @@ define([
                 attr = null;
             for (attr in self.replaceattributes) {
                 settings = self.replaceattributes[attr];
-                str = str.split("${" + settings.variable + "}").join(self._escapeHTML(settings.value));
+                str = str.split("${" + settings.variable + "}").join(settings.value);
             }
             /*
                 jQuery is a library that uses define (AMD style),
