@@ -5,7 +5,9 @@
   "license": "Apache V2",
   "author": "Marcus Groen",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.1",
