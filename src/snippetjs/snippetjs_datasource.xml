@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="snippetjs.widget.snippetjs_datasource" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+<widget id="snippetjs.widget.snippetjs_datasource" offlineCapable="true" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
   <name>JavaScript Snippet (Data source)</name>
   <description>This widget can be used to insert custom JavaScript to your page, taking object attributes as input parameters.</description>
 
