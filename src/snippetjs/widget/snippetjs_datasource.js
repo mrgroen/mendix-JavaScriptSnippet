@@ -95,6 +95,7 @@ define([
 
             if (this._init === true && this.refresh === false){
                 logger.debug(this.id + "._loadData: skipping load because the widget refresh setting is set to false.");
+                self._executeCallback(callback, "_loadData");
                 return;
             }
 
