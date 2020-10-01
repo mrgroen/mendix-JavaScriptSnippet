@@ -215,7 +215,7 @@ define([
             } else if (obj.isEnum(attr)) {
                 returnvalue = this._checkString(obj.getEnumCaption(attr, obj.get(attr)), renderAsHTML);
 
-            } else if (obj.isNumeric(attr) || obj.isCurrency(attr) || obj.getAttributeType(attr) === "AutoNumber") {
+            } else if (obj.isNumeric(attr) || obj.getAttributeType(attr) === "AutoNumber") {
                 numberOptions = {};
                 numberOptions.places = decimalPrecision;
                 if (groupDigits) {
