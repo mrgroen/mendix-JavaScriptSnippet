@@ -36,7 +36,7 @@ define([
         _jQuery3: {}, // shared
 
         postCreate: function () {
-            logger.debug(this.id + ".postCreate");
+            mx.logger.debug(this.id + ".postCreate");
             this._buildTimeStrings();
             this._timeData = languagePack;
             this.attributeList = this.notused;
@@ -67,7 +67,7 @@ define([
         },
 
         update: function (obj, callback) {
-            logger.debug(this.id + ".update");
+            mx.logger.debug(this.id + ".update");
             this._contextObj = obj;
             this._resetSubscriptions();
             this._loadData(callback);
@@ -76,7 +76,7 @@ define([
         _evalJS: function (str) {
           var self = this;
           var evalString = "var refresh = " + self._init + "; " + str + "\r\n/* widget = " + self.id + " (snippetjs.js) */";
-          logger.debug(self.id + ": eval(\"" + evalString + "\");");
+          mx.logger.debug(self.id + ": eval(\"" + evalString + "\");");
           try {
             // JavaScript evaluation will be done in the context of the widget instance.
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
@@ -84,17 +84,17 @@ define([
                 eval(str);
             }).call(self, evalString);
           } catch (e) {
-            logger.error(self.id + ": Error while evaluating javascript input.");
+            mx.logger.error(self.id + ": Error while evaluating javascript input.");
             domConstruct.place("<div class=\"alert alert-danger\">Error while evaluating javascript input: " + e + "</div>", self.domNode, "only");
           }
         },
 
         _loadData: function (callback) {
             var self = this;
-            logger.debug(this.id + "._loadData");
+            mx.logger.debug(this.id + "._loadData");
 
             if (this._init === true && this.refresh === false){
-                logger.debug(this.id + "._loadData: skipping load because the widget refresh setting is set to false.");
+                mx.logger.debug(this.id + "._loadData: skipping load because the widget refresh setting is set to false.");
                 self._executeCallback(callback, "_loadData");
                 return;
             }
@@ -116,7 +116,7 @@ define([
                             value: value
                         });
                         } else {
-                        logger.warn(this.id + "._loadData: You have an empty variable name, skipping! Please check Data source -> Attributes -> Variable Name");
+                        mx.logger.warn(this.id + "._loadData: You have an empty variable name, skipping! Please check Data source -> Attributes -> Variable Name");
                         }
                     } else {
                         referenceAttributeList.push(this.attributeList[i]);
@@ -135,12 +135,12 @@ define([
 
         // The fetch referencse is an async action, we use dojo.hitch to create a function that has values of the scope of the for each loop we are in at that moment.
         _fetchReferences: function (list, numberlist, callback) {
-            logger.debug(this.id + "._fetchReferences");
+            mx.logger.debug(this.id + "._fetchReferences");
 
             var l = list.length;
 
             var callbackfunction = function (data, obj) {
-                logger.debug(this.id + "._fetchReferences get callback");
+                mx.logger.debug(this.id + "._fetchReferences get callback");
                 var value = this._fetchAttr(obj, data.split[2], data.renderAsHTML, data.oldnumber, data.emptyReplacement, data.decimalPrecision, data.groupDigits);
                 this.replaceattributes.push({
                     id: data.i,
@@ -194,7 +194,7 @@ define([
         },
 
         _fetchAttr: function (obj, attr, renderAsHTML, i, emptyReplacement, decimalPrecision, groupDigits) {
-            logger.debug(this.id + "._fetchAttr");
+            mx.logger.debug(this.id + "._fetchAttr");
             var returnvalue = "",
                 options = {},
                 numberOptions = null;
@@ -238,7 +238,7 @@ define([
 
         _runJS: function (callback) {
             var self = this;
-            logger.debug(self.id + "._runJS");
+            mx.logger.debug(self.id + "._runJS");
             var str = self.snippet,
                 settings = null,
                 attr = null;
@@ -274,7 +274,7 @@ define([
         },
 
         _checkString: function (string, renderAsHTML) {
-            logger.debug(this.id + "._checkString");
+            mx.logger.debug(this.id + "._checkString");
             if (string.indexOf("<script") > -1 || !renderAsHTML) {
                 string = dom.escapeString(string);
             }
@@ -282,7 +282,7 @@ define([
         },
 
         _parseDate: function (format, options, value) {
-            logger.debug(this.id + "._parseDate");
+            mx.logger.debug(this.id + "._parseDate");
             var datevalue = value;
 
             if (value === "") {
@@ -299,7 +299,7 @@ define([
         },
 
         _parseTimeAgo: function (value, data) {
-            logger.debug(this.id + "._parseTimeAgo");
+            mx.logger.debug(this.id + "._parseTimeAgo");
             var date = new Date(value),
                 now = new Date(),
                 appendStr = null,
@@ -345,7 +345,7 @@ define([
         },
 
         _resetSubscriptions: function () {
-            logger.debug(this.id + "._resetSubscriptions");
+            mx.logger.debug(this.id + "._resetSubscriptions");
             // Release handle on previous object, if any.
             var i = 0;
 
@@ -374,7 +374,7 @@ define([
         },
 
         _executeCallback: function (cb, from) {
-          logger.debug(this.id + "._executeCallback" + (from ? " from " + from : ""));
+          mx.logger.debug(this.id + "._executeCallback" + (from ? " from " + from : ""));
           this._init = true;
           if (cb && typeof cb === "function") {
             cb();
