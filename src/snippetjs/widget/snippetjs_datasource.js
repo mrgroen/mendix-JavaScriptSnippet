@@ -4,9 +4,9 @@
     ================================
 
     @file      : snippetjs_datasource.js
-    @version   : 1.2.0
+    @version   : 1.3.1
     @author    : Marcus Groen
-    @date      : 16-03-2017
+    @date      : 10-01-2022
     @copyright : Incentro
     @license   : Apache V2
 
