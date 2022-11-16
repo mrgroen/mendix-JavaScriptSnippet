@@ -1,0 +1,27 @@
+/* Editor Preview Styles */
+.javascript-snippet-preview {
+  align-items: center;
+  background-color: #fff6f3;
+  border: solid 1px #fe5000;
+  border-radius: 8px;
+  display: flex;
+}
+
+.javascript-snippet-preview__icon {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.javascript-snippet-preview__text {
+  margin-left: 8px;
+}
+
+.javascript-snippet-preview__text:not(.javascript-snippet-preview__text--smaller) {font-weight: bold;}
+
+.javascript-snippet-preview__text--smaller {
+  display: block;
+  font-size: 10px;
+}

@@ -1,39 +1,33 @@
 {
-  "name": "snippetjs",
-  "version": "1.1.0",
-  "description": "This widget adds custom JavaScript to your page, taking object attributes as input parameters.",
-  "license": "Apache V2",
-  "author": "Marcus Groen",
-  "private": true,
-  "dependencies": {
-    "lodash": "^4.17.19"
+  "name": "javascriptsnippet",
+  "widgetName": "JavaScriptSnippet",
+  "version": "1.0.0",
+  "description": "Insert custom JavaScript to your page.",
+  "copyright": "2022 Incentro",
+  "author": "Rob Duits",
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
+  "config": {
+    "projectPath": "../../",
+    "mendixHost": "http://localhost:8080",
+    "developmentPort": 3000
+  },
+  "packagePath": "incentro",
+  "scripts": {
+    "start": "pluggable-widgets-tools start:server",
+    "dev": "pluggable-widgets-tools start:web",
+    "build": "pluggable-widgets-tools build:web",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:web"
   },
   "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-if": "^2.0.1",
-    "gulp-intercept": "^0.1.0",
-    "gulp-json-transform": "^0.4.2",
-    "gulp-newer": "^1.3.0",
-    "gulp-util": "^3.0.7",
-    "gulp-zip": "^3.2.0",
-    "gulp-jsvalidate": "^3.0.0",
-    "widgetbuilder-gulp-helper": "https://github.com/JelteMX/widgetbuilder-gulp-helper/archive/1.0.1.tar.gz",
-    "yargs": "^6.0.0"
+    "@mendix/pluggable-widgets-tools": "^9.18.0"
   },
-  "engines": {
-    "node": ">=5"
-  },
-  "generatorVersion": "2.0.4",
-  "paths": {
-    "testProjectFolder": "./test/",
-    "testProjectFileName": "Test.mpr"
-  },
-  "scripts": {
-    "build": "node ./node_modules/gulp/bin/gulp build",
-    "version": "node ./node_modules/gulp/bin/gulp version",
-    "icon": "node ./node_modules/gulp/bin/gulp icon",
-    "folders": "node ./node_modules/gulp/bin/gulp folders",
-    "modeler": "node ./node_modules/gulp/bin/gulp modeler"
+  "dependencies": {
+    "classnames": "^2.2.6"
   }
 }
