@@ -1,10 +1,11 @@
 import "./ui/JavaScriptSnippet.css";
 import { createElement, useEffect, useState } from "react";
 
-export function JavaScriptSnippet({ attributeList, jsCode }) {
+export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     const self = this;
     const [canRender, setCanRender] = useState(false);
     const [javaScriptString, setJavaScriptString] = useState([]);
+    const widgetName = rest.name || "";
 
     function escape(htmlStr) {
         return htmlStr
@@ -26,7 +27,7 @@ export function JavaScriptSnippet({ attributeList, jsCode }) {
 
     useEffect(() => {
         let JavaScriptStringArray = jsCode;
-        if (attributeList) {
+        if (attributeList.length) {
             attributeList.map(attr => {
                 if (attr.jsAttribute.status === "available") {
                     if (typeof attr.jsAttribute.value === "boolean") {
@@ -38,12 +39,23 @@ export function JavaScriptSnippet({ attributeList, jsCode }) {
                             escape(attr.jsAttribute.value)
                         );
                     }
-                    return setJavaScriptString(JavaScriptStringArray);
-                } else return null;
+                }
+                return null;
             });
         }
-        setCanRender(true);
-    }, [javaScriptString, attributeList, jsCode]);
+        setJavaScriptString(JavaScriptStringArray);
+
+        if (!attributeList.length) {
+            setCanRender(true);
+        }
+
+        // clean-up function
+        return () => {
+            if (attributeList.length) {
+                setCanRender(true);
+            }
+        };
+    }, [attributeList, jsCode]);
 
     if (canRender) {
         // JavaScript evaluation will be done in the context of the widget instance.
@@ -57,7 +69,11 @@ export function JavaScriptSnippet({ attributeList, jsCode }) {
             return null;
         } catch (error) {
             console.warn("Error while evaluating javascript input.");
-            return <div className="alert alert-danger">Error while evaluating javascript input: {error}</div>;
+            return (
+                <div name={widgetName} className="alert alert-danger">
+                    Error while evaluating javascript input: {error}
+                </div>
+            );
         }
     } else return null;
 }

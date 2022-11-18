@@ -11,7 +11,7 @@
         <propertyGroup caption="General">
             <property key="jsCode" type="string" multiline="true" required="false">
                 <caption>JavaScript code</caption>
-                <description/>
+                <description>Note: special characters ( &amp; &#38; &gt; &lt; &#39; &#34; ) will be formatted.</description>
             </property>
         </propertyGroup>
         <propertyGroup caption="Attributes">
