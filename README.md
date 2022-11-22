@@ -1,5 +1,7 @@
 ## JavaScriptSnippet
 
+:sparkles: **The widget has been rebuild from the ground up as pluggable widget!** :sparkles:
+
 Insert custom JavaScript to your Mendix pages, taking object attributes as input parameters.
 
 ## Features

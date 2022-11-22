@@ -2,7 +2,6 @@ import "./ui/JavaScriptSnippet.css";
 import { createElement, useEffect, useState } from "react";
 
 export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
-    const self = this;
     const [canRender, setCanRender] = useState(false);
     const [javaScriptString, setJavaScriptString] = useState([]);
     const widgetName = rest.name || "";
@@ -26,24 +25,34 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     // }
 
     useEffect(() => {
-        let JavaScriptStringArray = jsCode;
+        let JSArray = jsCode;
+
         if (attributeList.length) {
             attributeList.map(attr => {
                 if (attr.jsAttribute.status === "available") {
+                    const useValue =
+                        attr.jsAttribute.value && attr.jsAttribute.value !== undefined
+                            ? attr.jsAttribute.value
+                            : attr.jsEmptyValue;
+
+                    if (useValue === "" && typeof attr.jsAttribute.value !== "boolean") {
+                        console.warn(
+                            `${widgetName}: variable name "${attr.jsVarName}" is empty and also it's empty value replacement`
+                        );
+                    }
+
                     if (typeof attr.jsAttribute.value === "boolean") {
-                        JavaScriptStringArray = JavaScriptStringArray.split("${" + attr.jsVarName + "}").join(
-                            attr.jsAttribute.value
-                        );
+                        JSArray = JSArray.split("${" + attr.jsVarName + "}").join(attr.jsAttribute.value);
+                    } else if (Object.prototype.toString.call(attr.jsAttribute.value) === "[object Date]") {
+                        JSArray = JSArray.split("${" + attr.jsVarName + "}").join(useValue);
                     } else {
-                        JavaScriptStringArray = JavaScriptStringArray.split("${" + attr.jsVarName + "}").join(
-                            escape(attr.jsAttribute.value)
-                        );
+                        JSArray = JSArray.split("${" + attr.jsVarName + "}").join(escape(useValue));
                     }
                 }
                 return null;
             });
         }
-        setJavaScriptString(JavaScriptStringArray);
+        setJavaScriptString(JSArray);
 
         if (!attributeList.length) {
             setCanRender(true);
@@ -55,7 +64,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 setCanRender(true);
             }
         };
-    }, [attributeList, jsCode]);
+    }, [attributeList, jsCode, widgetName]);
 
     if (canRender) {
         // JavaScript evaluation will be done in the context of the widget instance.
@@ -65,7 +74,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
             (function () {
                 // eslint-disable-next-line no-new-func
                 Function(javaScriptString)();
-            }.call(self));
+            }.call());
             return null;
         } catch (error) {
             console.warn("Error while evaluating javascript input.");
