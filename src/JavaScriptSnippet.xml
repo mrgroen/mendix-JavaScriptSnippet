@@ -20,7 +20,7 @@
                     <description/>
                     <properties>
                         <propertyGroup caption="Object list group">
-                            <property key="jsVarName" type="string">
+                            <property key="jsVarName" type="string" required="true">
                                 <caption>Variable name</caption>
                                 <description>camelCaseName: Identifies the attribute value, this name should in the JavaScript Snippet code.</description>
                             </property>

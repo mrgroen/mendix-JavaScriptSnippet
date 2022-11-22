@@ -1,5 +1,5 @@
 import "./ui/JavaScriptSnippet.css";
-import { createElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     const [canRender, setCanRender] = useState(false);
@@ -45,6 +45,8 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                         JSArray = JSArray.split("${" + attr.jsVarName + "}").join(attr.jsAttribute.value);
                     } else if (Object.prototype.toString.call(attr.jsAttribute.value) === "[object Date]") {
                         JSArray = JSArray.split("${" + attr.jsVarName + "}").join(useValue);
+                    } else if (typeof attr.jsAttribute.value === "object") {
+                        JSArray = JSArray.split("${" + attr.jsVarName + "}").join(useValue.toNumber());
                     } else {
                         JSArray = JSArray.split("${" + attr.jsVarName + "}").join(escape(useValue));
                     }
@@ -70,19 +72,12 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
         // JavaScript evaluation will be done in the context of the widget instance.
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
         try {
-            // eslint-disable-next-line space-before-function-paren
-            (function () {
-                // eslint-disable-next-line no-new-func
-                Function(javaScriptString)();
-            }.call());
+            // eslint-disable-next-line no-new-func
+            Function(javaScriptString)();
             return null;
         } catch (error) {
-            console.warn("Error while evaluating javascript input.");
-            return (
-                <div name={widgetName} className="alert alert-danger">
-                    Error while evaluating javascript input: {error}
-                </div>
-            );
+            console.warn(`${widgetName}: Error while evaluating javascript input. 
+${error}`);
         }
     } else return null;
 }
