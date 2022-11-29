@@ -1,49 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?>
-<widget id="incentro.javascriptsnippet.JavaScriptSnippet" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
-        supportedPlatform="Web"
-        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<?xml version="1.0" encoding="utf-8" ?>
+<widget
+    id="incentro.javascriptsnippet.JavaScriptSnippet"
+    pluginWidget="true"
+    needsEntityContext="true"
+    offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
+>
     <name>JavaScript Snippet</name>
     <description>Insert custom JavaScript to your page.</description>
-    <studioProCategory>Display</studioProCategory>
-    <studioCategory>Display</studioCategory>
+    <studioProCategory>Utility</studioProCategory>
+    <studioCategory>Utility</studioCategory>
     <properties>
         <propertyGroup caption="General">
             <property key="jsCode" type="string" multiline="true" required="false">
                 <caption>JavaScript code</caption>
-                <description>Note: special characters ( &amp; &#38; &gt; &lt; &#39; &#34; ) will be formatted.</description>
+                <description
+                >Note: special characters ( &amp; &#38; &gt; &lt; &#39; &#34; ) will be formatted.</description>
             </property>
         </propertyGroup>
         <propertyGroup caption="Attributes">
             <property key="attributeList" type="object" isList="true" required="false">
-                    <caption>Attributes</caption>
-                    <description/>
-                    <properties>
-                        <propertyGroup caption="Object list group">
-                            <property key="jsVarName" type="string" required="true">
-                                <caption>Variable name</caption>
-                                <description>camelCaseName: Identifies the attribute value, this name should in the JavaScript Snippet code.</description>
-                            </property>
-                            <property key="jsAttribute" type="attribute">
-                                <caption>Attribute</caption>
-                                <description>Value of this attribute will be used to replace ${camelCaseName} and passed as a string (also Boolean attributes).</description>
-                                <attributeTypes>
-                                    <attributeType name="Boolean"/>
-                                    <attributeType name="DateTime"/>
-                                    <attributeType name="Enum"/>
-                                    <attributeType name="Integer"/>
-                                    <attributeType name="Long"/>
-                                    <attributeType name="String"/>
-                                    <attributeType name="Decimal"/>
-                                </attributeTypes>
-                            </property>
-                            <property key="jsEmptyValue" type="string" required="false">
-                                <caption>Empty value replacement</caption>
-                                <description>This string will be used when an attribute returns empty.</description>
-                            </property>
-                        </propertyGroup>
-                    </properties>
-                </property>
+                <caption>Attributes</caption>
+                <description />
+                <properties>
+                    <propertyGroup caption="Object list group">
+                        <property key="jsVarName" type="string" required="true">
+                            <caption>Variable name</caption>
+                            <description>
+                                camelCaseName: Identifies the attribute value, this name should in the JavaScript
+                                Snippet code.
+                            </description>
+                        </property>
+                        <property key="jsAttribute" type="attribute">
+                            <caption>Attribute</caption>
+                            <description>
+                                Value of this attribute will be used to replace ${camelCaseName} and passed as a string
+                                (also Boolean attributes).
+                            </description>
+                            <attributeTypes>
+                                <attributeType name="Boolean" />
+                                <attributeType name="DateTime" />
+                                <attributeType name="Enum" />
+                                <attributeType name="Integer" />
+                                <attributeType name="Long" />
+                                <attributeType name="String" />
+                                <attributeType name="Decimal" />
+                            </attributeTypes>
+                        </property>
+                        <property key="jsEmptyValue" type="string" required="false">
+                            <caption>Empty value replacement</caption>
+                            <description>This string will be used when an attribute returns empty.</description>
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
         </propertyGroup>
     </properties>
 </widget>
