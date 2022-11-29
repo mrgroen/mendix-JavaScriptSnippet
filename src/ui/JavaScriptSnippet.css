@@ -5,6 +5,7 @@
   border: solid 1px #fe5000;
   border-radius: 8px;
   display: flex;
+  margin-bottom: 16px;
 }
 
 .javascript-snippet-preview__icon {
@@ -16,12 +17,6 @@
 }
 
 .javascript-snippet-preview__text {
-  margin-left: 8px;
-}
-
-.javascript-snippet-preview__text:not(.javascript-snippet-preview__text--smaller) {font-weight: bold;}
-
-.javascript-snippet-preview__text--smaller {
-  display: block;
-  font-size: 10px;
+  margin-left: 4px;
+  margin-bottom: 0;
 }
