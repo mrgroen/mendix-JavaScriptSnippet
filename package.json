@@ -1,7 +1,7 @@
 {
     "name": "javascriptsnippet",
     "widgetName": "JavaScriptSnippet",
-    "version": "2.0.1",
+    "version": "2.0.0",
     "description": "Insert custom JavaScript to your page.",
     "copyright": "2022 Incentro",
     "author": "Rob Duits",
