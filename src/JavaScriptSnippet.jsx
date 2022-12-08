@@ -1,5 +1,5 @@
 import "./ui/JavaScriptSnippet.css";
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 
 export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     const [canRender, setCanRender] = useState(false);
@@ -54,6 +54,8 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 return null;
             });
         }
+
+        JSArray = JSArray.split("this").join(`'${widgetName}'`);
         setJavaScriptString(JSArray);
 
         if (!attributeList.length) {
@@ -69,15 +71,16 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     }, [attributeList, jsCode, widgetName]);
 
     if (canRender) {
+        console.info(javaScriptString);
+
         // JavaScript evaluation will be done in the context of the widget instance.
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
         try {
             // eslint-disable-next-line no-new-func
             Function(javaScriptString)();
-            return null;
         } catch (error) {
-            console.warn(`${widgetName}: Error while evaluating javascript input. 
-${error}`);
+            console.warn(`${widgetName}: Error while evaluating javascript input. ${error}`);
         }
-    } else return null;
+    }
+    return <div className={widgetName}></div>;
 }
