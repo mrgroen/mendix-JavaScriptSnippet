@@ -17,8 +17,17 @@
         <propertyGroup caption="General">
             <property key="jsCode" type="string" multiline="true" required="false">
                 <caption>JavaScript code</caption>
-                <description
-                >Note: special characters ( &amp; &#38; &gt; &lt; &#39; &#34; ) will be formatted.</description>
+                <description>Note: special characters ( &amp; &#38; &gt; &lt; &#39; &#34; ) will be formatted.
+
+Whenever using the `this`  string inside the widget, it will be replaced by the widget unique classname.</description>
+            </property>
+            <property key="tagUseRepeat" type="boolean" defaultValue="false">
+                <caption>Repeat element</caption>
+                <description>Repeat element for each item in data source.</description>
+            </property>
+            <property key="tagContentRepeatDataSource" type="datasource" required="true" isList="true">
+                <caption>Data source</caption>
+                <description />
             </property>
         </propertyGroup>
         <propertyGroup caption="Attributes">
@@ -29,17 +38,11 @@
                     <propertyGroup caption="Object list group">
                         <property key="jsVarName" type="string" required="true">
                             <caption>Variable name</caption>
-                            <description>
-                                camelCaseName: Identifies the attribute value, this name should in the JavaScript
-                                Snippet code.
-                            </description>
+                            <description>camelCaseName: Identifies the attribute value, this name should in the JavaScript Snippet code.</description>
                         </property>
                         <property key="jsAttribute" type="attribute">
                             <caption>Attribute</caption>
-                            <description>
-                                Value of this attribute will be used to replace ${camelCaseName} and passed as a string
-                                (also Boolean attributes).
-                            </description>
+                            <description>Value of this attribute will be used to replace ${camelCaseName} and passed as a string (also Boolean attributes).</description>
                             <attributeTypes>
                                 <attributeType name="Boolean" />
                                 <attributeType name="DateTime" />

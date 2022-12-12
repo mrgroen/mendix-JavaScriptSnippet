@@ -1,10 +1,11 @@
 import "./ui/JavaScriptSnippet.css";
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 
 export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     const [canRender, setCanRender] = useState(false);
     const [javaScriptString, setJavaScriptString] = useState([]);
     const widgetName = rest.name || "";
+    const uid = useState((Date.now().toString(36) + Math.random().toString(36).substring(2)));
 
     function escape(htmlStr) {
         return htmlStr
@@ -13,7 +14,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#39;");
-    }
+    };
 
     // function unEscape(htmlStr) {
     //     htmlStr = htmlStr.replace(/&lt;/g, "<");
@@ -53,6 +54,9 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 }
                 return null;
             });
+
+            JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
+            setJavaScriptString(JSArray);
         }
         setJavaScriptString(JSArray);
 
@@ -74,10 +78,9 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
         try {
             // eslint-disable-next-line no-new-func
             Function(javaScriptString)();
-            return null;
         } catch (error) {
-            console.warn(`${widgetName}: Error while evaluating javascript input. 
-${error}`);
+            console.warn(`${widgetName}: Error while evaluating javascript input. ${error}`);
         }
-    } else return null;
+    }
+    return <div className={`${widgetName}_${uid[0]}`}></div>;
 }

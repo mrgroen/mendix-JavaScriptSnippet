@@ -20,6 +20,8 @@ Add attribute(s) that you may need inside the code.
 
 Link used attributes inside the JavaScript code by using the `${VariableName}`.
 
+Whenever using the `this`  string inside the widget, it will be replaced by the widget unique classname.
+
 ## Issues, suggestions and feature requests
 
 [link to GitHub issues](https://github.com/mrgroen/JavaScript-Snippet/issues)
