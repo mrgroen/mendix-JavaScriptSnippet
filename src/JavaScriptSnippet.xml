@@ -21,14 +21,6 @@
 
 Whenever using the `this`  string inside the widget, it will be replaced by the widget unique classname.</description>
             </property>
-            <property key="tagUseRepeat" type="boolean" defaultValue="false">
-                <caption>Repeat element</caption>
-                <description>Repeat element for each item in data source.</description>
-            </property>
-            <property key="tagContentRepeatDataSource" type="datasource" required="true" isList="true">
-                <caption>Data source</caption>
-                <description />
-            </property>
         </propertyGroup>
         <propertyGroup caption="Attributes">
             <property key="attributeList" type="object" isList="true" required="false">
