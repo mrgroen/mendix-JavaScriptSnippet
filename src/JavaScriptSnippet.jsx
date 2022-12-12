@@ -54,10 +54,9 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 }
                 return null;
             });
-
-            JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
-            setJavaScriptString(JSArray);
         }
+        
+        JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
         setJavaScriptString(JSArray);
 
         if (!attributeList.length) {
