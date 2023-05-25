@@ -54,6 +54,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 }
                 return null;
             });
+            setCanRender(true);
         }
 
         JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
