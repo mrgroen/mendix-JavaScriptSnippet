@@ -1,6 +1,6 @@
 import { createElement } from "react";
 
-export function preview() {
+export function preview({ jsCode }) {
     return (
         <div className="javascript-snippet-preview">
             <div className="javascript-snippet-preview__icon">
@@ -11,9 +11,10 @@ export function preview() {
                     />
                 </svg>
             </div>
-            <p className="javascript-snippet-preview__text">
-                <span>JavaScript Snippet</span>
-            </p>
+            <div className="javascript-snippet-preview__text">
+                <p>JavaScript Snippet</p>
+                <p>{jsCode}</p>
+            </div>
         </div>
     );
 }

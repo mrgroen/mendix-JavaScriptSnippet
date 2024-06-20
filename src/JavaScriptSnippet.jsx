@@ -1,7 +1,7 @@
 import "./ui/JavaScriptSnippet.css";
 import { createElement, useEffect, useState } from "react";
 
-export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
+export function JavaScriptSnippet({ attributeList, jsCode, waitForAttributeList, ...rest }) {
     const [canRender, setCanRender] = useState(false);
     const [javaScriptString, setJavaScriptString] = useState([]);
     const widgetName = rest.name || "";
@@ -28,7 +28,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     useEffect(() => {
         let JSArray = jsCode;
 
-        if (attributeList.length) {
+        if (waitForAttributeList && attributeList.length) {
             attributeList.map(attr => {
                 if (attr.jsAttribute.status === "available") {
                     const useValue =
@@ -54,19 +54,18 @@ export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
                 }
                 return null;
             });
-            setCanRender(true);
         }
 
         JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
         setJavaScriptString(JSArray);
 
-        if (!attributeList.length) {
+        if (!waitForAttributeList && !attributeList.length) {
             setCanRender(true);
         }
 
         // clean-up function
         return () => {
-            if (attributeList.length) {
+            if (waitForAttributeList && attributeList.length) {
                 setCanRender(true);
             }
         };

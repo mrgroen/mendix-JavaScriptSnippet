@@ -52,6 +52,10 @@ Whenever using the `this`  string inside the widget, it will be replaced by the 
                     </propertyGroup>
                 </properties>
             </property>
+            <property key="waitForAttributeList" type="boolean" defaultValue="false">
+                <caption>Wait for AttributeList</caption>
+                <description>Widget only continues after Attributes have been loaded (on false, the widget might get more inside reloads).</description>
+            </property>
         </propertyGroup>
     </properties>
 </widget>

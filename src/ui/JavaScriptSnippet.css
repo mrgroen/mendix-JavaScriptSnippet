@@ -2,10 +2,10 @@
 .javascript-snippet-preview {
   align-items: center;
   background-color: #fff6f3;
-  border: solid 1px #fe5000;
   border-radius: 8px;
+  border: solid 1px #fe5000;
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 1px;
 }
 
 .javascript-snippet-preview__icon {
@@ -18,5 +18,16 @@
 
 .javascript-snippet-preview__text {
   margin-left: 4px;
-  margin-bottom: 0;
+}
+
+.javascript-snippet-preview__text p:first-child {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.javascript-snippet-preview__text p:last-child {
+  font-size: 12px;
+  margin: 0;
 }
