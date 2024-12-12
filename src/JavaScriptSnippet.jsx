@@ -1,7 +1,7 @@
 import "./ui/JavaScriptSnippet.css";
 import { createElement, useEffect, useState } from "react";
 
-export function JavaScriptSnippet({ attributeList, jsCode, waitForAttributeList, ...rest }) {
+export function JavaScriptSnippet({ attributeList, jsCode, ...rest }) {
     const [canRender, setCanRender] = useState(false);
     const [javaScriptString, setJavaScriptString] = useState([]);
     const widgetName = rest.name || "";
@@ -28,7 +28,18 @@ export function JavaScriptSnippet({ attributeList, jsCode, waitForAttributeList,
     useEffect(() => {
         let JSArray = jsCode;
 
-        if (waitForAttributeList && attributeList.length) {
+        // Auto-detect if we need to wait based on attributeList having items and any pending attributes
+        const hasAttributes = attributeList && attributeList.length > 0;
+        const allAttributesAvailable = hasAttributes
+            ? attributeList.every(attr => attr.jsAttribute.status === "available")
+            : true;
+
+        if (hasAttributes) {
+            if (!allAttributesAvailable) {
+                setCanRender(false);
+                return; // Exit early if attributes aren't ready
+            }
+
             attributeList.map(attr => {
                 if (attr.jsAttribute.status === "available") {
                     const useValue =
@@ -58,17 +69,7 @@ export function JavaScriptSnippet({ attributeList, jsCode, waitForAttributeList,
 
         JSArray = JSArray.split("this").join(`'${widgetName}_${uid[0]}'`);
         setJavaScriptString(JSArray);
-
-        if (!waitForAttributeList && !attributeList.length) {
-            setCanRender(true);
-        }
-
-        // clean-up function
-        return () => {
-            if (waitForAttributeList && attributeList.length) {
-                setCanRender(true);
-            }
-        };
+        setCanRender(true); // Only set to true when everything is ready
     }, [attributeList, jsCode, widgetName]);
 
     if (canRender) {
