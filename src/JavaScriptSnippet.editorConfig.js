@@ -116,7 +116,7 @@ export function getPreview(values, isDarkMode) {
                                 type: "Text",
                                 fontColor: isDarkMode ? "#fff" : "#000",
                                 fontSize: 8,
-                                content: ` ${values.jsCode}`
+                                content: ` ${(values.jsCode || "").substring(0, 500)}`
                             }
                         ],
                         grow: 1
